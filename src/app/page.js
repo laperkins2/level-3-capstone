@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import RegisterLogin from '@/components/RegisterLogin';
 
 export default function Home() {
   return (

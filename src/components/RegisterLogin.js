@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { registerUser, login } from '@/utils/authUtils';
 
 const RegisterLogin = () => {
   const [email, setEmail] = useState('');

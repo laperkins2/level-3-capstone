@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { registerUser, login } from '@/utils/authUtils';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const RegisterLogin = () => {
   const router = useRouter();

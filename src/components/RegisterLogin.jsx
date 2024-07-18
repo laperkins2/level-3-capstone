@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { registerUser, login } from '@/utils/authUtils';
+import { useRouter } from 'next/router';
 
 const RegisterLogin = () => {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -25,6 +27,7 @@ const RegisterLogin = () => {
       await login(email, password);
       setShowLoginForm(true);
       setShowRegisterForm(false);
+      router.push('/managementPage');
     } catch (error) {
       setError(error.message);
     }
@@ -33,6 +36,7 @@ const RegisterLogin = () => {
   const switchToLoginForm = () => {
     setShowLoginForm(true);
     setShowRegisterForm(false);
+    setError(null);
   };
 
   return (
@@ -104,6 +108,7 @@ const RegisterLogin = () => {
           Already have an account? Login
         </button>
       )}
+      {error && <p>{error}</p>}
     </div>
   );
 };

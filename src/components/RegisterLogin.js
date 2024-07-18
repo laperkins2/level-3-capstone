@@ -30,6 +30,11 @@ const RegisterLogin = () => {
     }
   };
 
+  const switchToLoginForm = () => {
+    setShowLoginForm(true);
+    setShowRegisterForm(false);
+  };
+
   return (
     <div>
       {showRegisterForm && (
@@ -95,12 +100,7 @@ const RegisterLogin = () => {
       )}
 
       {showRegisterForm && !showLoginForm && (
-        <button
-          onClick={() => {
-            setShowLoginForm(true);
-            setShowRegisterForm(false);
-          }}
-        >
+        <button onClick={switchToLoginForm}>
           Already have an account? Login
         </button>
       )}

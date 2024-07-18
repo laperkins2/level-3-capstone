@@ -3,6 +3,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-export default function ManagementPage() {
+const ManagementPage = () => {
   return <div>ManagementPage</div>;
-}
+};
+
+export default ManagementPage;

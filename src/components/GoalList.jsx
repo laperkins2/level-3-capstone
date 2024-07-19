@@ -5,6 +5,7 @@ export default function GoalList({
   targetAmount,
   currentProgress,
   deadline,
+  totalRemaining,
   onEdit,
   onDelete,
 }) {
@@ -23,6 +24,9 @@ export default function GoalList({
         </li>
         <li>
           <strong>Current Progress:</strong> ${currentProgress}
+        </li>
+        <li>
+          <strong>Total Remaining:</strong> ${totalRemaining}
         </li>
         <li>
           <strong>Deadline:</strong> {dateDeadline}

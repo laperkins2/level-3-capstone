@@ -8,12 +8,26 @@ export default function GoalList({
   onEdit,
   onDelete,
 }) {
+  const dateDeadline = deadline
+    ? new Date(deadline).toLocaleDateString()
+    : 'No deadline';
+
   return (
     <div>
-      Goal: {goal}
-      Target Amount: {targetAmount}
-      Current Progress: {currentProgress}
-      Deadline: {deadline}
+      <ul>
+        <li>
+          <strong>Goal:</strong> {goal}
+        </li>
+        <li>
+          <strong>Amount:</strong> ${targetAmount}
+        </li>
+        <li>
+          <strong>Current Progress:</strong> ${currentProgress}
+        </li>
+        <li>
+          <strong>Deadline:</strong> {dateDeadline}
+        </li>
+      </ul>
       <div>
         <button onClick={onEdit}>Edit</button>
         <button onClick={onDelete}>Delete</button>

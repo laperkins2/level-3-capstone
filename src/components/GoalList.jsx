@@ -5,13 +5,14 @@ export default function GoalList({
   targetAmount,
   currentProgress,
   deadline,
-  totalRemaining,
   onEdit,
   onDelete,
 }) {
   const dateDeadline = deadline
     ? new Date(deadline).toLocaleDateString()
     : 'No deadline';
+
+  const totalRemaining = targetAmount - currentProgress;
 
   return (
     <div>
@@ -20,13 +21,13 @@ export default function GoalList({
           <strong>Goal:</strong> {goal}
         </li>
         <li>
-          <strong>Amount:</strong> ${targetAmount}
+          <strong>Amount:</strong> ${targetAmount.toFixed(2)}
         </li>
         <li>
-          <strong>Current Progress:</strong> ${currentProgress}
+          <strong>Current Progress:</strong> ${currentProgress.toFixed(2)}
         </li>
         <li>
-          <strong>Total Remaining:</strong> ${totalRemaining}
+          <strong>Total Remaining:</strong> ${totalRemaining.toFixed(2)}
         </li>
         <li>
           <strong>Deadline:</strong> {dateDeadline}

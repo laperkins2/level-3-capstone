@@ -38,3 +38,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 <https://nextjs.org/docs/app/api-reference/functions/use-router>
 
 <https://nextjs.org/docs/messages/next-router-not-mounted>
+
+<https://www.w3schools.com/jsref/jsref_tofixed.asp>

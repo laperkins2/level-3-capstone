@@ -15,10 +15,9 @@ const RegisterLogin = () => {
     e.preventDefault();
     try {
       await registerUser(email, password);
-
       setShowLoginForm(true);
       setShowRegisterForm(false);
-      router.push('/managementPage');
+      router.push('/management');
     } catch (error) {
       setError(error.message);
     }
@@ -30,7 +29,7 @@ const RegisterLogin = () => {
       await login(email, password);
       setShowLoginForm(true);
       setShowRegisterForm(false);
-      router.push('/managementPage');
+      router.push('/management');
     } catch (error) {
       setError(error.message);
     }

@@ -7,6 +7,7 @@ import {
   deleteDocument,
 } from '@/utils/firebase.Utils';
 import { logout } from '@/utils/authUtils';
+import { useRouter } from 'next/navigation';
 
 export default function ManagementPage() {
   const [itemGoal, setItemGoal] = useState([]);
@@ -17,6 +18,8 @@ export default function ManagementPage() {
   const [itemTotalRemaining, setItemTotalRemaining] = useState(0);
   const [editItemId, setEditItemId] = useState(null);
   const [availableGoals, setAvailableGoals] = useState(0);
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchDocuments = async () => {
@@ -107,9 +110,10 @@ export default function ManagementPage() {
 
   const handleLogOut = () => {
     logout();
+    router.push('/');
     setItemGoal([]);
     setItemExpense('');
-    setItemDeadline([]);
+    setItemDeadline('');
     setItemTargetAmount(0);
     setItemCurrentProgress(0);
     setItemTotalRemaining(0);

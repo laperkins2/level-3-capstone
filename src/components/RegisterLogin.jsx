@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { registerUser, login } from '@/utils/authUtils';
 import { useRouter } from 'next/navigation';
@@ -14,8 +15,10 @@ const RegisterLogin = () => {
     e.preventDefault();
     try {
       await registerUser(email, password);
+
       setShowLoginForm(true);
       setShowRegisterForm(false);
+      router.push('/managementPage');
     } catch (error) {
       setError(error.message);
     }
@@ -42,8 +45,8 @@ const RegisterLogin = () => {
   return (
     <div>
       {showRegisterForm && (
-        <form>
-          <div onSubmit={handleSignUp}>
+        <form onSubmit={handleSignUp}>
+          <div>
             <label htmlFor="email">Email</label>
             <input
               id="email"
@@ -67,7 +70,7 @@ const RegisterLogin = () => {
           </div>
           {error && <p>{error}</p>}
           <div>
-            <button type="submit">Login</button>
+            <button type="submit">Register</button>
           </div>
         </form>
       )}
@@ -108,7 +111,6 @@ const RegisterLogin = () => {
           Already have an account? Login
         </button>
       )}
-      {error && <p>{error}</p>}
     </div>
   );
 };

@@ -1,4 +1,6 @@
 import React from 'react';
+import CanvasJSReact from '@canvasjs/react-charts';
+import ChartColumn from './ChartColumn';
 
 export default function GoalList({
   goal,
@@ -13,6 +15,12 @@ export default function GoalList({
     : 'No deadline';
 
   const totalRemaining = targetAmount - currentProgress;
+
+  const markers = [
+    { label: 'Target Amount', y: targetAmount },
+    { label: 'Current Progress', y: currentProgress },
+    { label: 'Total Remaining', y: totalRemaining },
+  ];
 
   return (
     <div>
@@ -37,6 +45,7 @@ export default function GoalList({
         <button onClick={onEdit}>Edit</button>
         <button onClick={onDelete}>Delete</button>
       </div>
+      <ChartColumn markers={markers} />
     </div>
   );
 }

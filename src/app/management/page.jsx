@@ -13,9 +13,8 @@ export default function ManagementPage() {
   const [itemGoal, setItemGoal] = useState([]);
   const [itemExpense, setItemExpense] = useState('');
   const [itemDeadline, setItemDeadline] = useState('');
-  const [itemTargetAmount, setItemTargetAmount] = useState(0);
-  const [itemCurrentProgress, setItemCurrentProgress] = useState(0);
-  const [itemTotalRemaining, setItemTotalRemaining] = useState(0);
+  const [itemTargetAmount, setItemTargetAmount] = useState();
+  const [itemCurrentProgress, setItemCurrentProgress] = useState();
   const [editItemId, setEditItemId] = useState(null);
   const [availableGoals, setAvailableGoals] = useState(0);
 
@@ -34,6 +33,8 @@ export default function ManagementPage() {
     fetchDocuments();
   }, []);
 
+  const totalRemaining = itemTargetAmount - itemCurrentProgress;
+
   const addGoal = async (e) => {
     e.preventDefault();
 
@@ -43,16 +44,15 @@ export default function ManagementPage() {
       deadline: itemDeadline,
       targetAmount: itemTargetAmount,
       currentProgress: itemCurrentProgress,
-      totalRemaining: itemTotalRemaining,
+      totalRemaining: totalRemaining,
     };
     try {
       const docId = await addDocument('goals', newGoal);
       setItemGoal((prevItems) => [...prevItems, { id: docId, ...newGoal }]);
       setItemExpense('');
       setItemDeadline('');
-      setItemTargetAmount(0);
-      setItemCurrentProgress(0);
-      setItemTotalRemaining(0);
+      setItemTargetAmount();
+      setItemCurrentProgress();
       setAvailableGoals((prev) => prev + 1);
     } catch (error) {
       console.error('Not able to add document:', error);
@@ -77,7 +77,6 @@ export default function ManagementPage() {
       setItemDeadline(itemToEdit.deadline);
       setItemTargetAmount(itemToEdit.targetAmount);
       setItemCurrentProgress(itemToEdit.currentProgress);
-      setItemTotalRemaining(itemToEdit.totalRemaining);
     }
   };
 
@@ -89,7 +88,7 @@ export default function ManagementPage() {
       deadline: itemDeadline,
       targetAmount: itemTargetAmount,
       currentProgress: itemCurrentProgress,
-      totalRemaining: itemTotalRemaining,
+      totalRemaining: totalRemaining,
     };
     try {
       await updateDocument('goals', editItemId, updatedGoal);
@@ -100,9 +99,8 @@ export default function ManagementPage() {
       setEditItemId(null);
       setItemExpense('');
       setItemDeadline('');
-      setItemTargetAmount(0);
-      setItemCurrentProgress(0);
-      setItemTotalRemaining(0);
+      setItemTargetAmount();
+      setItemCurrentProgress();
     } catch (error) {
       console.error('Error updating document:', error);
     }
@@ -114,9 +112,8 @@ export default function ManagementPage() {
     setItemGoal([]);
     setItemExpense('');
     setItemDeadline('');
-    setItemTargetAmount(0);
-    setItemCurrentProgress(0);
-    setItemTotalRemaining(0);
+    setItemTargetAmount();
+    setItemCurrentProgress();
     setEditItemId(null);
   };
 
@@ -151,6 +148,8 @@ export default function ManagementPage() {
             value={itemTargetAmount}
             onChange={(e) => setItemTargetAmount(Number(e.target.value))}
             required
+            inputMode="numeric"
+            pattern="[0-9]*"
           />
 
           <label htmlFor="currentProgress">Current Progress:</label>
@@ -160,16 +159,13 @@ export default function ManagementPage() {
             value={itemCurrentProgress}
             onChange={(e) => setItemCurrentProgress(Number(e.target.value))}
             required
+            inputMode="numeric"
+            pattern="[0-9]*"
           />
 
-          <label htmlFor="totalRemaining">Total Remaining:</label>
-          <input
-            id="totalRemaining"
-            type="number"
-            value={itemTotalRemaining}
-            onChange={(e) => setItemTotalRemaining(Number(e.target.value))}
-            required
-          />
+          <div>
+            <strong>Total Remaining</strong> {totalRemaining}
+          </div>
 
           <button type="submit">
             {editItemId !== null ? 'Update' : 'Add'}

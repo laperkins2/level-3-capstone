@@ -1,5 +1,4 @@
 import React from 'react';
-import CanvasJSReact from '@canvasjs/react-charts';
 import ChartColumn from './ChartColumn';
 
 export default function GoalList({

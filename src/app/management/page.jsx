@@ -118,87 +118,128 @@ export default function ManagementPage() {
   };
 
   return (
-    <main>
-      <div>
-        <h1>Planning for future Purchases</h1>
-        <h3>Available Goals: {availableGoals}</h3>
-        <form onSubmit={editItemId !== null ? updateItem : addGoal}>
-          <label htmlFor="expense">Expense:</label>
-          <input
-            id="expense"
-            type="text"
-            value={itemExpense}
-            onChange={(e) => setItemExpense(e.target.value)}
-            required
-          />
-
-          <label htmlFor="deadline">Deadline:</label>
-          <input
-            id="deadline"
-            type="text"
-            value={itemDeadline}
-            onChange={(e) => setItemDeadline(e.target.value)}
-            required
-          />
-
-          <label htmlFor="targetAmount">Target Amount:</label>
-          <input
-            id="targetAmount"
-            type="number"
-            value={itemTargetAmount}
-            onChange={(e) => setItemTargetAmount(Number(e.target.value))}
-            required
-            inputMode="numeric"
-            pattern="[0-9]*"
-          />
-
-          <label htmlFor="currentProgress">Current Progress:</label>
-          <input
-            id="currentProgress"
-            type="number"
-            value={itemCurrentProgress}
-            onChange={(e) => setItemCurrentProgress(Number(e.target.value))}
-            required
-            inputMode="numeric"
-            pattern="[0-9]*"
-          />
-
-          <div>
+    <main className="max-w-7xl mx-auto px-4 py-8">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-4">
+          Planning for future Purchases
+        </h1>
+        <h3 className="text-xl mb-4">Available Goals: {availableGoals}</h3>
+        <form
+          onSubmit={editItemId !== null ? updateItem : addGoal}
+          className="mb-8"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="expense" className="block mb-1">
+                Expense:
+              </label>
+              <input
+                id="expense"
+                type="text"
+                value={itemExpense}
+                onChange={(e) => setItemExpense(e.target.value)}
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+              />
+            </div>
+            <div>
+              <label htmlFor="deadline" className="block mb-1">
+                Deadline:
+              </label>
+              <input
+                id="deadline"
+                type="text"
+                value={itemDeadline}
+                onChange={(e) => setItemDeadline(e.target.value)}
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+              />
+            </div>
+            <div>
+              <label htmlFor="targetAmount" className="block mb-1">
+                Target Amount:
+              </label>
+              <input
+                id="targetAmount"
+                type="number"
+                value={itemTargetAmount}
+                onChange={(e) => setItemTargetAmount(Number(e.target.value))}
+                required
+                inputMode="numeric"
+                pattern="[0-9]*"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+              />
+            </div>
+            <div>
+              <label htmlFor="currentProgress" className="block mb-1">
+                Current Progress:
+              </label>
+              <input
+                id="currentProgress"
+                type="number"
+                value={itemCurrentProgress}
+                onChange={(e) => setItemCurrentProgress(Number(e.target.value))}
+                required
+                inputMode="numeric"
+                pattern="[0-9]*"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+              />
+            </div>
+          </div>
+          <div className="mt-4">
             <strong>Total Remaining</strong> {totalRemaining}
           </div>
 
-          <button type="submit">
+          <button
+            type="submit"
+            className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
+          >
             {editItemId !== null ? 'Update' : 'Add'}
           </button>
         </form>
 
-        <ul>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {itemGoal.map((item) => (
-            <li key={item.id}>
-              <div>
+            <li key={item.id} className="border border-gray-200 rounded-md p-4">
+              <div className="mb-2">
                 <strong>Expense:</strong> {item.expense}
               </div>
-              <div>
+              <div className="mb-2">
                 <strong>Deadline:</strong> {item.deadline}
               </div>
-              <div>
+              <div className="mb-2">
                 <strong>Target Amount:</strong> {item.targetAmount}
               </div>
-              <div>
+              <div className="mb-2">
                 <strong>Current Progress:</strong> {item.currentProgress}
               </div>
-              <div>
+              <div className="mb-2">
                 <strong>Total Remaining:</strong> {item.totalRemaining}
               </div>
               <div>
-                <button onClick={() => editItem(item.id)}>Edit</button>
-                <button onClick={() => deleteItem(item.id)}>Delete</button>
+                <button
+                  onClick={() => editItem(item.id)}
+                  className="px-3 py-1 bg-blue-500 text-white rounded-md mr-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => deleteItem(item.id)}
+                  className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:bg-blue-600"
+                >
+                  Delete
+                </button>
               </div>
             </li>
           ))}
         </ul>
-        <button onClick={handleLogOut}>Logout</button>
       </div>
+      <button
+        onClick={handleLogOut}
+        className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+      >
+        Logout
+      </button>
     </main>
   );
 }

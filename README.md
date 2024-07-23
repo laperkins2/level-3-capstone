@@ -40,3 +40,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 <https://nextjs.org/docs/messages/next-router-not-mounted>
 
 <https://www.w3schools.com/jsref/jsref_tofixed.asp>
+
+<https://vishwas-r.medium.com/add-canvasjs-charts-to-your-next-js-application-3755363c2c98>

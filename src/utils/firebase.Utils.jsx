@@ -10,8 +10,10 @@ import { db } from '../../firebase.config';
 
 async function getAllDocuments(collectionName) {
   const querySnapshot = await getDocs(collection(db, collectionName));
-  const documents = querySnapshot.map((doc) => ({ id: doc.id, ...doc.data() }));
-
+  const documents = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
   return documents;
 }
 

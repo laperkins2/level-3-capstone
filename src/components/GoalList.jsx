@@ -1,8 +1,7 @@
 import React from 'react';
-import ChartColumn from './ChartColumn';
 
 export default function GoalList({
-  goal,
+  expense,
   targetAmount,
   currentProgress,
   deadline,
@@ -15,17 +14,11 @@ export default function GoalList({
 
   const totalRemaining = targetAmount - currentProgress;
 
-  const markers = [
-    { label: 'Target Amount', y: targetAmount },
-    { label: 'Current Progress', y: currentProgress },
-    { label: 'Total Remaining', y: totalRemaining },
-  ];
-
   return (
     <div>
       <ul>
         <li>
-          <strong>Goal:</strong> {goal}
+          <strong>Expense:</strong> {expense}
         </li>
         <li>
           <strong>Amount:</strong> ${targetAmount.toFixed(2)}
@@ -41,10 +34,19 @@ export default function GoalList({
         </li>
       </ul>
       <div>
-        <button onClick={onEdit}>Edit</button>
-        <button onClick={onDelete}>Delete</button>
+        <button
+          onClick={onEdit}
+          className="px-3 py-1 bg-blue-500 text-white rounded-md mr-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+        >
+          Edit
+        </button>
+        <button
+          onClick={onDelete}
+          className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:bg-blue-600"
+        >
+          Delete
+        </button>
       </div>
-      <ChartColumn markers={markers} />
     </div>
   );
 }

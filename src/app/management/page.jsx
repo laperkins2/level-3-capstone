@@ -47,6 +47,7 @@ export default function ManagementPage() {
     e.preventDefault();
 
     const newFinance = {
+      uid: auth.currentUser?.uid,
       expense: expense,
       deadline: deadline,
       targetAmount: Number(targetAmount),
@@ -91,6 +92,7 @@ export default function ManagementPage() {
     e.preventDefault();
 
     const updatedFinance = {
+      uid: auth.currentUser?.uid,
       expense: expense,
       deadline: deadline,
       targetAmount: Number(targetAmount),
@@ -118,6 +120,7 @@ export default function ManagementPage() {
     router.push('/');
   };
 
+  console.log(auth.currentUser?.uid);
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
       <div className="mb-8">
@@ -144,17 +147,22 @@ export default function ManagementPage() {
         )}
 
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {finance.map((item) => (
-            <GoalList
-              key={item.id}
-              expense={item.expense}
-              targetAmount={item.targetAmount}
-              currentProgress={item.currentProgress}
-              deadline={item.deadline}
-              onEdit={() => editItem(item.id)}
-              onDelete={() => deleteItem(item.id)}
-            />
-          ))}
+          {finance.map((item) => {
+            if (item.uid == auth.currentUser?.uid) {
+              return (
+                <GoalList
+                  key={item.id}
+                  expense={item.expense}
+                  targetAmount={item.targetAmount}
+                  currentProgress={item.currentProgress}
+                  deadline={item.deadline}
+                  onEdit={() => editItem(item.id)}
+                  onDelete={() => deleteItem(item.id)}
+                />
+              );
+            }
+            return null;
+          })}
         </ul>
       </div>
 

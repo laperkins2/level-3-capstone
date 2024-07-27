@@ -62,8 +62,12 @@ To learn more about Next.js, take a look at the following resources:
 
 - Help from CodeX lecture and lab with Thomas Basham
 
-- Chatgpt with help adding my edit button
+- Chatgpt with help adding my edit button/ test questions
 
 - <https://jestjs.io/docs/expect>
 
 - <https://jestjs.io/docs/mock-function-api>
+
+- <https://wesbos.com/javascript/07-logic-and-flow-control/if-statements-function-returns-truthy-falsy>
+
+- <https://www.freecodecamp.org/news/if-statements-javascript/>

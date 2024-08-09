@@ -44,7 +44,7 @@ export default function FinanceForm({
           </label>
           <input
             id="deadline"
-            type="text"
+            type="date"
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
             required
@@ -83,7 +83,7 @@ export default function FinanceForm({
         </div>
       </div>
       <div className="mt-4">
-        <strong>Total Remaining</strong> {totalRemaining}
+        <strong>Total Remaining</strong> {totalRemaining.toFixed(2)}
       </div>
 
       <button
